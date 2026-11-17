@@ -60,20 +60,20 @@ I deliberately broke each gate to confirm the pipeline blocks bad changes.
 
 A test assertion was changed to fail. The run stopped at **Run unit tests**, and the Docker build, Trivy scan and push were skipped.
 
-![Failing test run](docs/test-gate-failed.png)
+![Failing test run](docs/failing-test-run.png)
 
 ### 2. Security gate
 
 An old, vulnerable `log4j-core` (2.14.1, affected by CVE-2021-44228) was added as a dependency.
 Tests and the Docker build passed, but **Trivy failed the build** and the push to GHCR was skipped.
 
-![Trivy step failed](docs/trivy-gate-failed.png)
+![Trivy step failed](docs/trivy-step-failed.png)
 
-![Trivy vulnerability table](docs/trivy-cve-table.png)
+![Trivy vulnerability table](docs/trivy-vulnerability-table.png)
 
 Both changes were then reverted, the scan came back clean, and the image was published:
 
-![Pipeline green](docs/pipeline-green.png)
+![Pipeline green](docs/green-run.png)
 
 ## Run the published image
 
